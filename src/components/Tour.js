@@ -1,3 +1,4 @@
+
 // Tour.js
 import React from 'react';
 
@@ -12,13 +13,17 @@ const Tour = ({ tour, removeTour, toggleReadMore }) => {
           <h4>{name}</h4>
           <h4 className="tour-price">${price}</h4>
         </div>
-        <p>
+        <p id={`tour-item-para-${id}`}>
           {showInfo ? info : `${info.substring(0, 200)}...`}
           <button onClick={() => toggleReadMore(id)}>
             {showInfo ? 'Show Less' : 'Show More'}
           </button>
         </p>
-        <button className="delete-btn" onClick={() => removeTour(id)}>
+        <button
+          id={`delete-btn-${id}`} // Added id attribute with dynamic id
+          className="delete-btn"
+          onClick={() => removeTour(id)}
+        >
           Not Interested
         </button>
       </footer>
