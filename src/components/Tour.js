@@ -1,9 +1,17 @@
-
 // Tour.js
 import React from 'react';
 
 const Tour = ({ tour, removeTour, toggleReadMore }) => {
   const { id, name, info, image, price, showInfo } = tour;
+
+  // Function to truncate text to 200 words
+  const truncateText = (text) => {
+    const words = text.split(' ');
+    if (words.length > 200) {
+      return words.slice(0, 200).join(' ') + '...';
+    }
+    return text;
+  };
 
   return (
     <article className="tour">
@@ -14,13 +22,13 @@ const Tour = ({ tour, removeTour, toggleReadMore }) => {
           <h4 className="tour-price">${price}</h4>
         </div>
         <p id={`tour-item-para-${id}`}>
-          {showInfo ? info : `${info.substring(0, 200)}...`}
+          {showInfo ? info : truncateText(info)}
           <button onClick={() => toggleReadMore(id)}>
-            {showInfo ? 'Show Less' : 'Show More'}
+            {showInfo ? 'shows' : 'hides'}
           </button>
         </p>
         <button
-          id={`delete-btn-${id}`} // Added id attribute with dynamic id
+          id={`delete-btn-${id}`}
           className="delete-btn"
           onClick={() => removeTour(id)}
         >
