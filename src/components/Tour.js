@@ -4,7 +4,7 @@ import React from 'react';
 const Tour = ({ tour, removeTour, toggleReadMore }) => {
   const { id, name, info, image, price, showInfo } = tour;
 
-  // Function to truncate text to 200 words
+  // Function to truncate text to exactly 200 words
   const truncateText = (text) => {
     const words = text.split(' ');
     if (words.length > 200) {
@@ -24,7 +24,7 @@ const Tour = ({ tour, removeTour, toggleReadMore }) => {
         <p id={`tour-item-para-${id}`}>
           {showInfo ? info : truncateText(info)}
           <button onClick={() => toggleReadMore(id)}>
-            {showInfo ? 'shows' : 'hides'}
+            {showInfo ? 'Show Less' : 'Show More'}
           </button>
         </p>
         <button
@@ -40,3 +40,5 @@ const Tour = ({ tour, removeTour, toggleReadMore }) => {
 };
 
 export default Tour;
+
+
