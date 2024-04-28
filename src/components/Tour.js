@@ -1,12 +1,8 @@
 // Tour.js
-import React, { useState } from 'react';
+import React from 'react';
 
-const Tour = ({ id, name, info, image, price, removeTour }) => {
-  const [readMore, setReadMore] = useState(false);
-
-  const toggleReadMore = () => {
-    setReadMore(!readMore);
-  };
+const Tour = ({ tour, removeTour, toggleReadMore }) => {
+  const { id, name, info, image, price, showInfo } = tour;
 
   return (
     <article className="tour">
@@ -17,9 +13,9 @@ const Tour = ({ id, name, info, image, price, removeTour }) => {
           <h4 className="tour-price">${price}</h4>
         </div>
         <p>
-          {readMore ? info : `${info.substring(0, 200)}...`}
-          <button onClick={toggleReadMore}>
-            {readMore ? 'See Less' : 'Read More'}
+          {showInfo ? info : `${info.substring(0, 200)}...`}
+          <button onClick={() => toggleReadMore(id)}>
+            {showInfo ? 'Show Less' : 'Show More'}
           </button>
         </p>
         <button className="delete-btn" onClick={() => removeTour(id)}>
